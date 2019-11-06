@@ -41,24 +41,20 @@ def index():
     return render_template('index.html')
 
 
+# フォームからデータを取得してデータベースに登録する処理
 @app.route('/add_sql')
 def add_sql():
-
     # 日付を取得
     date = datetime.now()
-
     # 入力フォームのデータを取得
     name = request.args["name"]
     sex = request.args["gender"]
     hobby = request.args["hobby"]
-
     # テーブルにデータを追加する
     add_data = Sample_table(date, name, sex, hobby)
     db.session.add(add_data)
-
     # テーブルへの変更を保存する
     db.session.commit()
-
     return render_template('redirect.html')
 
 
