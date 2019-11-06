@@ -1,0 +1,38 @@
+<html>
+<h2>テーブルを確認する</h2>
+<p>
+    <table border>
+        <thead>
+            <td>id</td>
+            <td>日付</td>
+            <td>名前</td>
+            <td>性別</td>
+            <td>趣味</td>
+            <td>編集</td>
+        </thead>
+        <tbody>
+            <tr>
+                {% for item in item_list %}
+                <td>{{item.user_id}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.sex}}</td>
+                <td>{{item.hobby}}</td>
+                <td>
+                    <form action='/delete'><input type="hidden" name="user_id" value={{item.user_id}}>
+                        <button type="submit">削除する</button>
+                    </form>
+
+                    <form action='/update'><input type="hidden" name="user_id" value={{item.user_id}}>
+                        <button type="submit">変更する</button>
+                    </form>
+                </td>
+
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    <p>
+        <a href='/'>トップに戻る</a>
+
+</html>
