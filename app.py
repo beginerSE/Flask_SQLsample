@@ -84,18 +84,19 @@ def delete_data():
     return render_template('table.html', item_list=data)
 
 
-# 登録したデータを更新する処理
+# 更新画面を表示
 @app.route('/update')
 def update():
     # 更新するuser_idを取得
     id_ = request.args["user_id"]
-    # データを削除する
+    # テーブルからデータを取得する
     data = Sample_table.query.filter_by(user_id=id_)
     return render_template('update.html', item_list=data, id_=id_)
 
 
 @app.route('/update_sql')
 def update_sql():
+    # データを選択する
     id_ = request.args["user_id"]
     data = Sample_table.query.filter_by(user_id=id_).first()
     # 日付と各データを変更
